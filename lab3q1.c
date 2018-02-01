@@ -25,7 +25,7 @@ void handle_alarm(int sig)
 	if(alarm_count==3)
 	{
 		printf("signal sent\n");
-		kill(SIGINT,getpid());
+		kill(getpid(),SIGINT);
 	}
 	else
 	{
