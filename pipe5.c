@@ -60,10 +60,8 @@ int main()
         close(p2[1]);
 
         char ch;
-        read(p2[0],&ch,1);
         
-        if(ch=='2')
-        { 
+        
             
             char buff2[30];
             int count=0;
@@ -80,7 +78,8 @@ int main()
                     continue;
                     
                 }
-                printf("child 2 is printing: ");
+                else{
+                printf("child 2 is printing: ");}
                 
             }
             if(buff2[0]=='\0')
@@ -89,22 +88,17 @@ int main()
                 printf("\n");
                 continue;
             }
-                count=1;
+                count+=1;
+                if(count==1)
+                {continue;}
                 printf("%s",buff2);   
                 fflush(stdout);
             }
         
         
-        }
+        
 
-        else
-        {
-            char ch1='r';
-            write(p3[1],&ch1,1);
-            
-
-        }
-
+        
         close(p3[1]);
         close(p4[0]);
         close(p2[0]);
@@ -121,6 +115,8 @@ int main()
         close(p2[1]);
 
         char ch1;
+       outer: while(1)
+        {
         read(p3[0],&ch1,1);
         if(ch1=='r')
         {
@@ -139,12 +135,13 @@ int main()
                         printf("\n");
                         int ch2='s';
                         write(p4[1],&ch2,1);
-                        continue;
+                        goto outer;
                     }
                 count=1;
                 printf("%s",buff2);   
                 fflush(stdout);
             }
+        }
         }
 
         close(p4[1]);
@@ -179,7 +176,7 @@ int main()
         
     
     }
-    sleep(2);
+    sleep(1);
     }
 
     close(p2[0]);
